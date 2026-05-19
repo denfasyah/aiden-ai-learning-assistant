@@ -6,6 +6,7 @@ import * as yup from "yup";
 import Swal from "sweetalert2";
 import { useAuth } from "../../context/AuthContext";
 import { Mail, Lock, ArrowRight, ArrowLeft } from "lucide-react";
+import ParticleBackground from "../../components/ui/ParticleBackground";
 
 const schema = yup.object().shape({
   email: yup
@@ -40,7 +41,7 @@ const LoginPage = () => {
         text: "Selamat datang kembali!",
         timer: 1500,
         showConfirmButton: false,
-               background: "#050816",
+        background: "#050816",
         color: "#fff",
         backdrop: `
     rgba(0,0,0,0.45)
@@ -87,6 +88,7 @@ const LoginPage = () => {
         px-5 py-10
       "
     >
+      <ParticleBackground />
       <div
         className="
           absolute left-1/2 top-1/2

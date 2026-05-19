@@ -6,6 +6,7 @@ import * as yup from "yup";
 import Swal from "sweetalert2";
 import api from "../../services/api";
 import { User, Mail, Lock, ArrowLeft } from "lucide-react";
+import ParticleBackground from "../../components/ui/ParticleBackground";
 
 const schema = yup.object().shape({
   name: yup
@@ -96,6 +97,7 @@ const RegisterPage = () => {
         px-4 py-10
       "
     >
+      <ParticleBackground />
       {/* BACK BUTTON */}
 
       {/* BACKGROUND GLOW */}

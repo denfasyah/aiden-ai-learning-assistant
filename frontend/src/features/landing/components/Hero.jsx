@@ -18,7 +18,7 @@ const Hero = () => {
       {/* Glow bottom-right accent */}
       <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-violet-500/8 blur-3xl" />
 
-      <div className="relative z-10 w-full max-w-4xl px-6 pb-20 pt-32">
+      <div className="relative z-10 w-full max-w-4xl px-6 pb-20 pt-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,8 +59,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.35 }}
             className="mb-10 max-w-lg text-[17px] leading-[1.75] text-slate-400"
           >
-            Upload PDF, lalu AI bantu kamu memahami isi materi, membuat summary,
-            quiz, flashcard, dan chat berdasarkan konteks dokumenmu.
+            Upload materi belajarmu, lalu biarkan AI membantu memahami isi dokumen dengan summary, quiz, flashcard, dan chat interaktif.
           </motion.p>
 
           {/* Buttons */}
@@ -98,7 +97,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Stats row */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.9 }}
@@ -114,7 +113,7 @@ const Hero = () => {
                 <span className="text-[12px] text-slate-500">{s.label}</span>
               </div>
             ))}
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
 

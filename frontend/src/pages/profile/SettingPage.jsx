@@ -98,7 +98,7 @@ const SettingPage = () => {
       setTimeout(() => setShowErrToast(false), 2500);
       return;
     }
-    
+
     setEmailLoading(true);
     try {
       await axiosInstance.patch('/users/change-email', {
@@ -147,7 +147,7 @@ const SettingPage = () => {
         </Card>
 
         {/* ── Tampilan ── */}
-        <Card title="Tampilan" icon={<Monitor size={16} className="text-indigo-400" />}>
+        {/* <Card title="Tampilan" icon={<Monitor size={16} className="text-indigo-400" />}>
           <ToggleRow
             label={
               <span className="flex items-center gap-2">
@@ -162,7 +162,7 @@ const SettingPage = () => {
             onToggle={() => {}}
             disabled={true}
           />
-        </Card>
+        </Card> */}
 
         {/* ── Keamanan ── */}
         <Card title="Keamanan" icon={<Shield size={16} className="text-indigo-400" />}>
@@ -279,7 +279,7 @@ const SettingPage = () => {
         </Card>
 
         {/* ── Danger Zone ── */}
-        <div className="bg-red-500/[0.04] border border-red-500/[0.18] rounded-2xl p-6">
+        {/* <div className="bg-red-500/[0.04] border border-red-500/[0.18] rounded-2xl p-6">
           <div className="flex items-center gap-2 mb-1.5">
             <AlertTriangle size={15} className="text-red-500" />
             <p className="text-red-500 text-xs font-bold uppercase tracking-widest m-0">Danger Zone</p>
@@ -313,7 +313,7 @@ const SettingPage = () => {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
 
       </div>
     </div>

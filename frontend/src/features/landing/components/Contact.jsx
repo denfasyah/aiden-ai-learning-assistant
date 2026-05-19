@@ -107,7 +107,7 @@ const Contact = () => {
             <ContactCard item={CONTACT_LINKS[0]} />
             <ContactCard item={CONTACT_LINKS[1]} />
 
-            <div
+            {/* <div
               className="rounded-2xl p-5"
               style={{
                 background: "rgba(255,255,255,0.03)",
@@ -125,7 +125,7 @@ const Contact = () => {
                 Tim kami aktif Senin–Jumat (08.00–17.00 WIB). Kami berusaha
                 merespons dalam 24 jam.
               </p>
-            </div>
+            </div> */}
           </motion.div>
 
           <motion.div

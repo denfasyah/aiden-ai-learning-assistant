@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import useLogout from '../hooks/useLogout';
 import SidebarDashboard from './components/SidebarDashboard';
 import NavbarDashboard from './components/NavbarDashboard';
+import ParticleBackground from "../components/ui/ParticleBackground";
 
 const DashboardLayout = ({ title: propTitle, description: propDescription }) => {
   const { user } = useAuth();
@@ -65,6 +66,7 @@ const DashboardLayout = ({ title: propTitle, description: propDescription }) => 
 
         <div className="flex-1 px-5 py-8 lg:px-12 xl:px-16 pb-20 overflow-x-hidden">
           <Outlet context={{ user, setSidebarOpen }} />
+          <ParticleBackground />
         </div>
       </main>
     </div>
