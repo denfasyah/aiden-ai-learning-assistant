@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import { Mail, Code2, Send, MessageSquare } from "lucide-react";
@@ -58,7 +59,30 @@ const ContactCard = ({ item }) => {
 };
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = "Nama tidak boleh kosong";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email tidak boleh kosong";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Format email tidak valid";
+    }
+    if (!formData.message.trim()) newErrors.message = "Pesan tidak boleh kosong";
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSend = () => {
+    if (!validate()) return;
+
     Swal.fire({
       icon: "success",
       title: "Pesan Berhasil Dikirim",
@@ -67,6 +91,9 @@ const Contact = () => {
       background: "#0f172a",
       color: "#fff",
     });
+
+    setFormData({ name: "", email: "", message: "" });
+    setErrors({});
   };
 
   return (
@@ -106,26 +133,6 @@ const Contact = () => {
           >
             <ContactCard item={CONTACT_LINKS[0]} />
             <ContactCard item={CONTACT_LINKS[1]} />
-
-            {/* <div
-              className="rounded-2xl p-5"
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              <div className="mb-2.5 flex items-center gap-2.5">
-                <MessageSquare className="h-4 w-4 text-blue-400" />
-                <span className="text-[14px] font-bold text-slate-200">
-                  Respons Cepat
-                </span>
-              </div>
-              <p className="text-[13.5px] leading-6 text-slate-400">
-                Tim kami aktif Senin–Jumat (08.00–17.00 WIB). Kami berusaha
-                merespons dalam 24 jam.
-              </p>
-            </div> */}
           </motion.div>
 
           <motion.div
@@ -156,12 +163,18 @@ const Contact = () => {
                 <input
                   type="text"
                   placeholder="Nama lengkap kamu"
-                  className="w-full rounded-xl px-4 py-3 text-[14px] text-slate-200 outline-none transition-all duration-200 placeholder:text-slate-600 focus:ring-1 focus:ring-blue-500/50"
+                  value={formData.name}
+                  onChange={(e) => {
+                    setFormData({ ...formData, name: e.target.value });
+                    if (errors.name) setErrors({ ...errors, name: "" });
+                  }}
+                  className={`w-full rounded-xl px-4 py-3 text-[14px] text-slate-200 outline-none transition-all duration-200 placeholder:text-slate-600 focus:ring-1 ${errors.name ? 'border-red-500 focus:ring-red-500/50' : 'focus:ring-blue-500/50'}`}
                   style={{
                     background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    border: errors.name ? "1px solid rgba(239,68,68,0.5)" : "1px solid rgba(255,255,255,0.08)",
                   }}
                 />
+                {errors.name && <p className="mt-1.5 text-[12px] text-red-400">{errors.name}</p>}
               </div>
 
               <div>
@@ -171,12 +184,18 @@ const Contact = () => {
                 <input
                   type="email"
                   placeholder="email@gmail.com"
-                  className="w-full rounded-xl px-4 py-3 text-[14px] text-slate-200 outline-none transition-all duration-200 placeholder:text-slate-600 focus:ring-1 focus:ring-blue-500/50"
+                  value={formData.email}
+                  onChange={(e) => {
+                    setFormData({ ...formData, email: e.target.value });
+                    if (errors.email) setErrors({ ...errors, email: "" });
+                  }}
+                  className={`w-full rounded-xl px-4 py-3 text-[14px] text-slate-200 outline-none transition-all duration-200 placeholder:text-slate-600 focus:ring-1 ${errors.email ? 'border-red-500 focus:ring-red-500/50' : 'focus:ring-blue-500/50'}`}
                   style={{
                     background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    border: errors.email ? "1px solid rgba(239,68,68,0.5)" : "1px solid rgba(255,255,255,0.08)",
                   }}
                 />
+                {errors.email && <p className="mt-1.5 text-[12px] text-red-400">{errors.email}</p>}
               </div>
 
               <div>
@@ -186,12 +205,18 @@ const Contact = () => {
                 <textarea
                   rows={4}
                   placeholder="Tuliskan pertanyaan atau masukan kamu..."
-                  className="w-full resize-none rounded-xl px-4 py-3 text-[14px] text-slate-200 outline-none transition-all duration-200 placeholder:text-slate-600 focus:ring-1 focus:ring-blue-500/50"
+                  value={formData.message}
+                  onChange={(e) => {
+                    setFormData({ ...formData, message: e.target.value });
+                    if (errors.message) setErrors({ ...errors, message: "" });
+                  }}
+                  className={`w-full resize-none rounded-xl px-4 py-3 text-[14px] text-slate-200 outline-none transition-all duration-200 placeholder:text-slate-600 focus:ring-1 ${errors.message ? 'border-red-500 focus:ring-red-500/50' : 'focus:ring-blue-500/50'}`}
                   style={{
                     background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    border: errors.message ? "1px solid rgba(239,68,68,0.5)" : "1px solid rgba(255,255,255,0.08)",
                   }}
                 />
+                {errors.message && <p className="mt-1.5 text-[12px] text-red-400">{errors.message}</p>}
               </div>
 
               <button
