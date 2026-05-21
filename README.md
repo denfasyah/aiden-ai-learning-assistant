@@ -58,9 +58,9 @@ Dengan pendekatan **context-aware**, AiDen memahami dokumen yang kamu upload dan
 ## 📸 Screenshot
 
 <p align="center">
-  <img src="public/landing.png" width="90%" />
-  <img src="public/login.png" width="90%" />
-  <img src="public/dashboard.png" width="90%" />
+  <img src="frontend/public/landing.png" width="90%" />
+  <img src="frontend/public/login.png" width="90%" />
+  <img src="frontend/public/dashboard.png" width="90%" />
 </p>
 
 ---
