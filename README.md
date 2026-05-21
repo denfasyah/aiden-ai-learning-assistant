@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/logo.png" alt="AiDen Logo" width="120" />
+  <img src="frontend/public/logo.png" alt="AiDen Logo" width="120" />
 </p>
 
 <h1 align="center">AiDen</h1>
