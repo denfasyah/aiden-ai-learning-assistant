@@ -5,13 +5,16 @@
  */
 const buildSystemPrompt = (extractedText) => {
   // Truncation logic: max 30,000 characters
-  let contextText = extractedText || '';
+  let contextText = extractedText || "";
   let isTruncated = false;
 
   if (contextText.length > 30000) {
     // Find the last space before 30k to avoid cutting words
-    const lastSpace = contextText.lastIndexOf(' ', 30000);
-    contextText = contextText.substring(0, lastSpace !== -1 ? lastSpace : 30000);
+    const lastSpace = contextText.lastIndexOf(" ", 30000);
+    contextText = contextText.substring(
+      0,
+      lastSpace !== -1 ? lastSpace : 30000,
+    );
     isTruncated = true;
   }
 
@@ -49,7 +52,7 @@ ${contextText}${truncationNote}
 1. **Hanya dari dokumen** — Jawab HANYA berdasarkan konten dokumen di atas. Jangan menambahkan informasi dari luar dokumen meskipun kamu mengetahuinya. 
 
 2. **Jujur kalau ga ada di dokumen** — Kalau pertanyaan user ga bisa dijawab dari dokumen, bilang dengan jelas tapi tetep friendly:
-   "hmm, kek nya info ini ga ada di dokumen yang lu kasih ke gue 🤔 gue cuma bisa bantu dari materi yg ada. kalau mw tanya hal yang lebih luas, coba fitur **Assistant** di sidebar — dia sifatnya global, bisa jawab apa aja tu"
+   "hmm, kek nya info ini ga ada di dokumen yang lu kasih ke gue 🤔 gue cuma bisa bantu dari materi yg ada. kalau mw di luar konteks dokumen, lu bisa buat New Conversation dengan dokumen baru, atau bisa langsung New Conversation pada fitur Assistant di sidebar"
 
 3. **Ga boleh ngarang** — No asumsi, no improvisasi di luar dokumen. Tetep akurat.
 
@@ -127,12 +130,15 @@ Jangan selalu menambahkan penutup — hanya jika relevan dan natural.`;
  * @returns {string} Fully constructed summary prompt.
  */
 const buildSummaryPrompt = (extractedText) => {
-  let contextText = extractedText || '';
+  let contextText = extractedText || "";
   let isTruncated = false;
 
   if (contextText.length > 30000) {
-    const lastSpace = contextText.lastIndexOf(' ', 30000);
-    contextText = contextText.substring(0, lastSpace !== -1 ? lastSpace : 30000);
+    const lastSpace = contextText.lastIndexOf(" ", 30000);
+    contextText = contextText.substring(
+      0,
+      lastSpace !== -1 ? lastSpace : 30000,
+    );
     isTruncated = true;
   }
 
@@ -174,10 +180,13 @@ ${contextText}${truncationNote}
  * @returns {string} Fully constructed flashcard prompt.
  */
 const buildFlashcardPrompt = (extractedText, count = 10) => {
-  let contextText = extractedText || '';
+  let contextText = extractedText || "";
   if (contextText.length > 30000) {
-    const lastSpace = contextText.lastIndexOf(' ', 30000);
-    contextText = contextText.substring(0, lastSpace !== -1 ? lastSpace : 30000);
+    const lastSpace = contextText.lastIndexOf(" ", 30000);
+    contextText = contextText.substring(
+      0,
+      lastSpace !== -1 ? lastSpace : 30000,
+    );
   }
 
   return `Buat tepat ${count} flashcard dari dokumen berikut untuk membantu user belajar.
@@ -202,11 +211,14 @@ ${contextText}`;
 };
 
 const buildQuizPrompt = (extractedText, count = 5) => {
-  let contextText = extractedText || '';
+  let contextText = extractedText || "";
   if (contextText.length > 30000) {
-    const lastSpace = contextText.lastIndexOf(' ', 30000);
-    contextText = contextText.substring(0, lastSpace !== -1 ? lastSpace : 30000);
-    contextText += '\n[Dokumen terlalu panjang, ditampilkan sebagian]';
+    const lastSpace = contextText.lastIndexOf(" ", 30000);
+    contextText = contextText.substring(
+      0,
+      lastSpace !== -1 ? lastSpace : 30000,
+    );
+    contextText += "\n[Dokumen terlalu panjang, ditampilkan sebagian]";
   }
 
   return `Buat TEPAT ${count} soal pilihan ganda dari dokumen berikut.
@@ -273,6 +285,5 @@ module.exports = {
   buildSummaryPrompt,
   buildFlashcardPrompt,
   buildQuizPrompt,
-  buildGlobalSystemPrompt
+  buildGlobalSystemPrompt,
 };
-
